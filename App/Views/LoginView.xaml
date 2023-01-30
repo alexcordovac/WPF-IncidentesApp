@@ -1,0 +1,158 @@
+﻿<Window x:Class="IncidentesApp.GUI.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IncidentesApp.GUI.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        WindowStartupLocation="CenterScreen"
+        Title="LoginView" MinHeight="450" Height="450" MinWidth="300" Width="300" Background="#3C3F41"
+        x:Name="WindowLogin">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.7*"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="/Assets/Imagenes/login_security.png"/>
+
+        <DockPanel Grid.Row="1" >
+
+            <StackPanel Margin="0 10 0 0" DockPanel.Dock="Top">
+                <Label FontSize="16" Foreground="White" HorizontalAlignment="Center">Bienvenido</Label>
+                <Border Margin="10">
+                    <StackPanel>
+                        
+                        <!--Usuario-->
+                        <Grid>
+                            <Border  
+                                     Background="LightGray"
+                                     CornerRadius="15"
+                                     Height="30">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox
+                                            Grid.Column="1"
+                                            x:Name="TxtUsuario"
+                                            Background="LightGray"
+                                            Margin="0 1 10 1"
+                                            VerticalContentAlignment="Center"
+                                            BorderThickness="0"
+                                            Opacity="0.7"
+                                            Text="{Binding Usuario, UpdateSourceTrigger=PropertyChanged}">
+                                    </TextBox>
+
+
+                                    <materialDesign:PackIcon Kind="user"
+                                                             Grid.Column="0"
+                                                             VerticalAlignment="Center"
+                                                             HorizontalAlignment="Right"
+                                                             Height="25"
+                                                             Width="25"
+                                                             Opacity="0.5"/>
+
+                                    <TextBlock
+                                                Grid.Column="1"
+                                                IsHitTestVisible="False"
+                                                Background="Transparent"
+                                                Margin="3 0 10 0"
+                                                Opacity="0.4"
+                                                VerticalAlignment="Center"
+                                                Text="Ingresa tu usuario">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=TxtUsuario}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+
+                                            </Style>
+
+                                        </TextBlock.Style>
+                                    </TextBlock>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <!--Usuario-->
+                        <Grid Margin="0 10 0 0">
+                            <Border  
+                                     Background="LightGray"
+                                     CornerRadius="15"
+                                     Height="30">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="30"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBox
+                                            Grid.Column="1"
+                                            x:Name="TxtContrasena"
+                                            Background="LightGray"
+                                            Margin="0 1 10 1"
+                                            VerticalContentAlignment="Center"
+                                            BorderThickness="0"
+                                            Opacity="0.7"
+                                            Text="{Binding Contraseña, UpdateSourceTrigger=PropertyChanged}">
+                                    </TextBox>
+
+
+                                    <materialDesign:PackIcon Kind="Password"
+                                                             Grid.Column="0"
+                                                             VerticalAlignment="Center"
+                                                             HorizontalAlignment="Right"
+                                                             Height="23"
+                                                             Width="25"
+                                                             Opacity="0.5"/>
+
+                                    <TextBlock
+                                                Grid.Column="1"
+                                                IsHitTestVisible="False"
+                                                Background="Transparent"
+                                                Margin="3 0 10 0"
+                                                Opacity="0.4"
+                                                VerticalAlignment="Center"
+                                                Text="Ingresa tu contraseña">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=TxtContrasena}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+
+                                            </Style>
+
+                                        </TextBlock.Style>
+                                    </TextBlock>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            
+            <!--Botones ingresar y salir-->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right" >
+                <Button Margin="10 0 10 0" Command="{Binding AutenticarCommand}" CommandParameter="{Binding ElementName=WindowLogin}">Ingresar</Button>
+                <Button Command="{Binding SalirCommand}" CommandParameter="{Binding ElementName=WindowLogin}">Salir</Button>
+            </StackPanel>
+        </DockPanel>
+
+    </Grid>
+</Window>

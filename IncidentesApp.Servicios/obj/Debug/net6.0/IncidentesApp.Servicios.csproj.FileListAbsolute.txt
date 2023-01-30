@@ -1,0 +1,17 @@
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Servicios.deps.json
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Servicios.dll
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Servicios.pdb
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.csproj.AssemblyReference.cache
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.AssemblyInfoInputs.cache
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.AssemblyInfo.cs
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.csproj.CoreCompileInputs.cache
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.dll
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\refint\IncidentesApp.Servicios.dll
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.pdb
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\ref\IncidentesApp.Servicios.dll
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Entidades.dll
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Entidades.pdb
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\obj\Debug\net6.0\IncidentesApp.Servicios.csproj.CopyComplete
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Repositorios.dll
+C:\Users\alexc\source\repos\App\IncidentesApp.Servicios\bin\Debug\net6.0\IncidentesApp.Repositorios.pdb

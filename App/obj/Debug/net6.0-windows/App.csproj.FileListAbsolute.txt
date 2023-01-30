@@ -1,0 +1,5 @@
+C:\Users\alexc\source\repos\App\App\obj\Debug\net6.0-windows\App.csproj.AssemblyReference.cache
+C:\Users\alexc\source\repos\App\App\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\alexc\source\repos\App\App\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\alexc\source\repos\App\App\obj\Debug\net6.0-windows\App_MarkupCompile.cache
+C:\Users\alexc\source\repos\App\App\obj\Debug\net6.0-windows\App_MarkupCompile.lref
