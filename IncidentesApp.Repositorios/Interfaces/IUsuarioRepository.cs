@@ -9,7 +9,7 @@ namespace IncidentesApp.Repositorios.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Task<UsuarioDTO> ObtenerUsuario(string usuario);
+        //Task<UsuarioDTO> ObtenerUsuario(string usuario);
 
     }
 }
