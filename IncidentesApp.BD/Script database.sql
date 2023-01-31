@@ -108,7 +108,7 @@
 	)
 
 	ALTER TABLE CentroAtencion
-	ADD CONSTRAINT FK_CentroAtencion_CoordenadasID FOREIGN KEY (CoordenadasID) 
+	ADD CONSTRAINT FK_Coordenadas_CoordenadasID FOREIGN KEY (CoordenadasID) 
 	REFERENCES Coordenadas(CoordenadasID)
 
 	INSERT INTO CentroAtencion(Nombre, CoordenadasID)
@@ -159,6 +159,7 @@
 		Descripcion VARCHAR(150) NOT NULL,
 		Lugar VARCHAR(50) NOT NULL,
 		Latitud NUMERIC(23, 20) NOT NULL,
+		DistanciaKM NUMERIC(8, 3),
 		Longitud NUMERIC(23, 20) NOT NULL,
 		DireccionCardinal VARCHAR(10),
 		TiempoEstimadoMinutos NUMERIC(6,3),

@@ -71,7 +71,7 @@
                             Height="15" Width="15"
                             Visibility="{Binding CargandoDistanciaVisibility}"/>
                 </StackPanel>
-                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.Distancia}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
+                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.DistanciaKM}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
 
             </DockPanel>
 
@@ -101,7 +101,7 @@
                             Height="15" Width="15"
                             Visibility="{Binding CargandoTEVisibility}"/>
                 </StackPanel>
-                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.TiempoEstimadoMinutos}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
+                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.TiempoEstimadoMinutos, StringFormat='{}{0:#,#.00 Min}'}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
             </DockPanel>
 
             <!--Hora estimada de llegada-->
@@ -115,7 +115,7 @@
                             Height="15" Width="15"
                             Visibility="{Binding CargandoHEVisibility}"/>
                 </StackPanel>
-                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.HoraEstimadaLlegada}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
+                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.HoraEstimadaLlegada, StringFormat='{}{0:HH:mm}'}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
             </DockPanel>
 
         </Grid>

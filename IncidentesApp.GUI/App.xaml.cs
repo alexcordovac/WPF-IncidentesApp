@@ -38,6 +38,8 @@ namespace IncidentesApp.GUI
 
             containerRegistry.Register<IUsuarioService, UsuarioService>();
             containerRegistry.Register<IUsuarioRepository, UsuarioRepository>();
+            containerRegistry.Register<IIncidenteService, IncidenteService>();
+            containerRegistry.Register<ICentroAtencionRepository, CentroAtencionRepository>();
         }
 
         protected override Window CreateShell()

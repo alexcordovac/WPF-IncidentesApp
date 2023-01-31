@@ -33,6 +33,21 @@ namespace IncidentesApp.GUI.Models
             set { SetProperty(ref this.descripcion, value); }
         }
 
+        private double distanciaKM;
+
+        public double DistanciaKM
+        {
+            get { return distanciaKM; }
+            set { SetProperty(ref this.distanciaKM, value); }
+        }
+
+        private string direccionCardinal;
+
+        public string DireccionCardinal
+        {
+            get { return direccionCardinal; }
+            set { SetProperty(ref this.direccionCardinal, value); }
+        }
 
         private string lugar;
 
@@ -57,6 +72,23 @@ namespace IncidentesApp.GUI.Models
             get { return longitud; }
             set { SetProperty(ref this.longitud, value); }
         }
+
+        private double tiempoEstimadoMinutos;
+
+        public double TiempoEstimadoMinutos
+        {
+            get { return tiempoEstimadoMinutos; }
+            set { SetProperty(ref this.tiempoEstimadoMinutos, value); }
+        }
+
+        private DateTime horaEstimadaLlegada;
+
+        public DateTime HoraEstimadaLlegada
+        {
+            get { return horaEstimadaLlegada; }
+            set { SetProperty(ref this.horaEstimadaLlegada, value); }
+        }
+
 
     }
 }
