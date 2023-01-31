@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\alexc\source\repos\IncidentesApp\App\App.xaml
 51825111425
 
-16194026481
+18-34008336
 207571067159
 Views\ConsultarIncidentesView.xaml;Views\LoginView.xaml;Views\MainWindowView.xaml;Views\ProcesarIncidenteView.xaml;Views\ReportarIncidenteView.xaml;
 
-True
+False
 

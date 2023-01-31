@@ -100,3 +100,5 @@ C:\Users\alexc\source\repos\IncidentesApp\App\obj\Debug\net6.0-windows\refint\In
 C:\Users\alexc\source\repos\IncidentesApp\App\obj\Debug\net6.0-windows\IncidentesApp.GUI.pdb
 C:\Users\alexc\source\repos\IncidentesApp\App\obj\Debug\net6.0-windows\IncidentesApp.GUI.genruntimeconfig.cache
 C:\Users\alexc\source\repos\IncidentesApp\App\obj\Debug\net6.0-windows\ref\IncidentesApp.GUI.dll
+C:\Users\alexc\source\repos\IncidentesApp\App\obj\Debug\net6.0-windows\Views\ProcesarIncidenteView.g.cs
+C:\Users\alexc\source\repos\IncidentesApp\App\obj\Debug\net6.0-windows\Views\ProcesarIncidenteView.baml

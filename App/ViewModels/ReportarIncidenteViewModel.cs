@@ -1,6 +1,8 @@
 ﻿using IncidentesApp.GUI.Interfaces;
 using IncidentesApp.GUI.Models;
+using IncidentesApp.GUI.Views;
 using Prism.Commands;
+using Prism.Ioc;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -14,8 +16,12 @@ namespace IncidentesApp.GUI.ViewModels
 {
     internal class ReportarIncidenteViewModel : BindableBase
     {
-        public ReportarIncidenteViewModel()
+        private readonly IContainerProvider _containerProvider;
+
+        public ReportarIncidenteViewModel(IContainerProvider containerProvider)
         {
+            this._containerProvider = containerProvider;
+
             CatalogoTipoAsistencia = new ObservableCollection<TipoAsistenciaModel>();
             CatalogoTipoAsistencia.Add(new TipoAsistenciaModel(1, "Policía", "PoliceBadgeOutline"));
             CatalogoTipoAsistencia.Add(new TipoAsistenciaModel(2, "Bomberos", "FireTruck"));
@@ -49,7 +55,8 @@ namespace IncidentesApp.GUI.ViewModels
 
             if (rs == MessageBoxResult.Yes)
             {
-
+                var procesarView = this._containerProvider.Resolve<ProcesarIncidenteView>();
+                procesarView.ShowDialog();
             }
 
         }

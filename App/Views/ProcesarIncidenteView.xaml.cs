@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IncidentesApp.GUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace IncidentesApp.GUI.Views
     /// <summary>
     /// Interaction logic for ProcesarIncidenteView.xaml
     /// </summary>
-    public partial class ProcesarIncidenteView : Window
+    public partial class ProcesarIncidenteView : Window, IClosable
     {
         public ProcesarIncidenteView()
         {
