@@ -1,5 +1,7 @@
 ﻿using IncidentesApp.GUI.Interfaces;
+using IncidentesApp.GUI.Models;
 using Prism.Commands;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,16 @@ using System.Windows;
 
 namespace IncidentesApp.GUI.ViewModels
 {
-    internal class ProcesarIncidenteViewModel
+    internal class ProcesarIncidenteViewModel : BindableBase
     {
 
         public ProcesarIncidenteViewModel()
         {
+            this.Incidente = new IncidenciaModel();
             this.CancelarCommand = new DelegateCommand<IClosable>(this.CerrarWindow);
             this.GuardarCommand = new DelegateCommand<IClosable>(this.GuardarIncidente);
+
+            this.ProcesarIncidente();
         }
 
         #region Comandos
@@ -24,19 +29,72 @@ namespace IncidentesApp.GUI.ViewModels
         #endregion
 
         #region Propiedades
-        public Visibility CargandoEstacionVisibility { get; set; } = Visibility.Visible;
-        public Visibility CargandoDistanciaVisibility { get; set; } = Visibility.Visible;
-        public Visibility CargandoDireccionCardinalVisibility { get; set; } = Visibility.Visible;
-        public Visibility CargandoTEVisibility { get; set; } = Visibility.Visible;
-        public Visibility CargandoHEVisibility { get; set; } = Visibility.Visible;
+
+        private IncidenciaModel incidente;
+
+        public IncidenciaModel Incidente
+        {
+            get { return incidente; }
+            set { incidente = value; }
+        }
+
+
+
+        private Visibility cargandoEstacionVisibility = Visibility.Visible;
+
+        public Visibility CargandoEstacionVisibility
+        {
+            get { return cargandoEstacionVisibility; }
+            set
+            {
+                SetProperty(ref this.cargandoEstacionVisibility, value);
+            }
+        }
+
+        private Visibility cargandoDistanciaVisibility = Visibility.Visible;
+
+        public Visibility CargandoDistanciaVisibility
+        {
+            get { return cargandoDistanciaVisibility; }
+            set { SetProperty(ref this.cargandoDistanciaVisibility, value); }
+        }
+
+
+        private Visibility cargandoDireccionCardinalVisibility = Visibility.Visible;
+
+        public Visibility CargandoDireccionCardinalVisibility
+        {
+            get { return cargandoDireccionCardinalVisibility; }
+            set { SetProperty(ref this.cargandoDireccionCardinalVisibility, value); }
+        }
+
+        private Visibility cargandoTEVisibility = Visibility.Visible;
+
+        public Visibility CargandoTEVisibility
+        {
+            get { return cargandoTEVisibility; }
+            set { SetProperty(ref this.cargandoTEVisibility, value); }
+        }
+
+        private Visibility cargandoHEVisibility = Visibility.Visible;
+
+        public Visibility CargandoHEVisibility
+        {
+            get { return cargandoHEVisibility; }
+            set { SetProperty(ref this.cargandoHEVisibility, value); }
+        }
 
         #endregion
 
         #region Metodos
 
-        private void ProcesarIncidente() 
+        private async void ProcesarIncidente()
         {
-            
+
+            await Task.Delay(2000);
+
+            this.CargandoEstacionVisibility = Visibility.Collapsed;
+            this.Incidente.CentroAtencion.Nombre = "Holaaaaaaa";
         }
 
 
@@ -47,7 +105,7 @@ namespace IncidentesApp.GUI.ViewModels
 
         private void GuardarIncidente(IClosable win)
         {
-           
+
         }
 
         #endregion

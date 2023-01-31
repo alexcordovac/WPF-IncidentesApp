@@ -19,7 +19,7 @@
             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="TexBlockLoadingStyle">
                 <Setter Property="Visibility" Value="Collapsed"/>
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding RelativeSource={ RelativeSource AncestorType=DockPanel, Mode=FindAncestor}, Path=Children[0].Children[1].Visibility}" Value="Collapsed">
+                    <DataTrigger Binding="{Binding RelativeSource={ RelativeSource AncestorType=DockPanel}, Path=Children[0].Children[1].Visibility}" Value="Collapsed">
                         <Setter Property="Visibility" Value="Visible"/>
                     </DataTrigger>
                 </Style.Triggers>
@@ -56,7 +56,7 @@
                             Height="15" Width="15"
                             Visibility="{Binding CargandoEstacionVisibility}"/>
                 </StackPanel>
-                <TextBlock Margin="5 0 0 0" Text="{Binding CentroAtencion.Nombre}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
+                <TextBlock Margin="5 0 0 0" Text="{Binding Incidente.CentroAtencion.Nombre}" Foreground="OrangeRed" Style="{StaticResource TexBlockLoadingStyle}"/>
 
             </DockPanel>
 
