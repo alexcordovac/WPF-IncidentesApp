@@ -153,10 +153,11 @@
 
 
 
-	--Reservación
+	--Incidente
 	CREATE TABLE Incidente(
 		IncidenteID INT IDENTITY PRIMARY KEY,	
 		Descripcion VARCHAR(150) NOT NULL,
+		Lugar VARCHAR(50) NOT NULL,
 		Latitud NUMERIC(23, 20) NOT NULL,
 		Longitud NUMERIC(23, 20) NOT NULL,
 		DireccionCardinal VARCHAR(10),

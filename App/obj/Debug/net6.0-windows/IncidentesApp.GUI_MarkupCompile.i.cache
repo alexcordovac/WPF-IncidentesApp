@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\alexc\source\repos\IncidentesApp\App\App.xaml
-41425040830
+51825111425
 
-13-800555251
+16194026481
 207571067159
-Views\ConsultarIncidentesView.xaml;Views\LoginView.xaml;Views\MainWindowView.xaml;Views\ReportarIncidenteView.xaml;
+Views\ConsultarIncidentesView.xaml;Views\LoginView.xaml;Views\MainWindowView.xaml;Views\ProcesarIncidenteView.xaml;Views\ReportarIncidenteView.xaml;
 
-False
+True
 

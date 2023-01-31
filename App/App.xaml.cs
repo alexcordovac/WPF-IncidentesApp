@@ -49,13 +49,13 @@ namespace IncidentesApp.GUI
 
         protected override void OnInitialized()
         {
-            //Hacer login antes de mostrar la ventana inicial
-            var login = Container.Resolve<LoginView>();
+            ////Hacer login antes de mostrar la ventana inicial
+            //var login = Container.Resolve<LoginView>();
 
-            login.ShowDialog();
+            //login.ShowDialog();
 
-            if (login.DataContext is LoginViewModel logindtc && !logindtc.Autenticado)
-                System.Windows.Application.Current.Shutdown();
+            //if (login.DataContext is LoginViewModel logindtc && !logindtc.Autenticado)
+            //    System.Windows.Application.Current.Shutdown();
 
 
 

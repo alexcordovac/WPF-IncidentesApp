@@ -26,7 +26,7 @@ namespace IncidentesApp.GUI.ViewModels
 
         #region Propiedades
 
-        private string usuario;
+        private string usuario = "admin";
 
         public string Usuario
         {
@@ -35,7 +35,7 @@ namespace IncidentesApp.GUI.ViewModels
         }
 
 
-        private string contraseña;
+        private string contraseña = "admin";
 
         public string Contraseña
         {
@@ -46,7 +46,6 @@ namespace IncidentesApp.GUI.ViewModels
         public bool Autenticado { get; set; } = false;
 
         #endregion
-
 
         #region Comandos
         public DelegateCommand<IClosable> AutenticarCommand { get; set; }
