@@ -11,7 +11,8 @@ namespace IncidentesApp.Entidades.Solicitud
     {
         public UsuarioDTO()
         {
-
+            this.Persona = new PersonaDTO();
+            this.Rol = new RolDTO();
         }
 
         public UsuarioDTO(string usuario, string contraseña)
@@ -19,9 +20,11 @@ namespace IncidentesApp.Entidades.Solicitud
             this.Usuario = usuario;
             this.Contraseña = contraseña;
         }
+
+        public int UsuarioId { get; set; }
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
-
+        public PersonaDTO Persona { get; set; }
         public RolDTO Rol { get; set; }
     }
 }

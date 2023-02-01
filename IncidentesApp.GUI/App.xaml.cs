@@ -1,4 +1,7 @@
-﻿using IncidentesApp.GUI.ViewModels;
+﻿using IncidentesApp.Entidades.Solicitud;
+using IncidentesApp.GUI.Interfaces;
+using IncidentesApp.GUI.Session;
+using IncidentesApp.GUI.ViewModels;
 using IncidentesApp.GUI.Views;
 using IncidentesApp.Repositorios.Interfaces;
 using IncidentesApp.Repositorios.Repositorios;
@@ -36,8 +39,12 @@ namespace IncidentesApp.GUI
 
             containerRegistry.Register<IDbConnection>((r) => new SqlConnection(cnn));
 
+            containerRegistry.RegisterSingleton<ISessionContext, SessionContext>();
             containerRegistry.Register<IUsuarioService, UsuarioService>();
             containerRegistry.Register<IUsuarioRepository, UsuarioRepository>();
+            containerRegistry.Register<IIncidenteRepository, IncidenteRepository>();
+            containerRegistry.Register<IIncidenteService, IncidenteService>();
+            containerRegistry.Register<ICentroAtencionRepository, CentroAtencionRepository>();
         }
 
         protected override Window CreateShell()
@@ -51,13 +58,16 @@ namespace IncidentesApp.GUI
         {
             //Hacer login antes de mostrar la ventana inicial
             var login = Container.Resolve<LoginView>();
-
             login.ShowDialog();
 
-            if (login.DataContext is LoginViewModel logindtc && !logindtc.Autenticado)
+            //Validar si el usuario se pudo loguear
+            var loginDc = (LoginViewModel)login.DataContext;
+            if (loginDc.UsuarioLogueado == null)
                 System.Windows.Application.Current.Shutdown();
 
-
+            //Guardar usuario en las variables de sesión
+            var sc = Container.Resolve<ISessionContext>();
+            sc.Usuario = loginDc.UsuarioLogueado;
 
             base.OnInitialized();
         }

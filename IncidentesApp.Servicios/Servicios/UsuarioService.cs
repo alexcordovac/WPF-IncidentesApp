@@ -26,13 +26,13 @@ namespace IncidentesApp.Servicios.Servicios
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns>True si las credenciales son válidas</returns>
-        public async Task<bool> Autenticar(UsuarioDTO usuario)
+        public async Task<UsuarioDTO?> Autenticar(UsuarioDTO usuario)
         {
             UsuarioDTO usu = await this._usuarioRepository.ObtenerUsuario(usuario.Usuario);
 
             var conEncriptada = EncriptacionService.StringToSHA2_512(usuario.Contraseña);
 
-            return usu.Contraseña.Equals(conEncriptada);
+            return usu.Contraseña.Equals(conEncriptada) ? usu : null;
         }
     }
 }

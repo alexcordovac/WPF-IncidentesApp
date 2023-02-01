@@ -26,7 +26,9 @@ namespace IncidentesApp.GUI.ViewModels
 
         #region Propiedades
 
-        private string usuario;
+        public UsuarioDTO UsuarioLogueado { get; set; }
+
+        private string usuario = "admin";
 
         public string Usuario
         {
@@ -35,7 +37,7 @@ namespace IncidentesApp.GUI.ViewModels
         }
 
 
-        private string contraseña;
+        private string contraseña = "admin";
 
         public string Contraseña
         {
@@ -43,10 +45,7 @@ namespace IncidentesApp.GUI.ViewModels
             set { contraseña = value; }
         }
 
-        public bool Autenticado { get; set; } = false;
-
         #endregion
-
 
         #region Comandos
         public DelegateCommand<IClosable> AutenticarCommand { get; set; }
@@ -66,11 +65,11 @@ namespace IncidentesApp.GUI.ViewModels
         private async void Autenticar(IClosable window)
         {
 
-            var loginValido = await this._loginService.Autenticar(new UsuarioDTO(this.Usuario, this.Contraseña));
+            var usValido = await this._loginService.Autenticar(new UsuarioDTO(this.Usuario, this.Contraseña));
 
-            if (loginValido)
+            if (usValido != null)
             {
-                this.Autenticado = true;
+                this.UsuarioLogueado = usValido;
                 this.CerrarLogin(window);
             }
             else
