@@ -199,7 +199,7 @@ GO
 -- Description:	<Consultar Incidentes por Id de Usuario>
 -- =============================================
 CREATE PROCEDURE sp_ConsultarIncidentes
-	@IdUsuario INT
+	@CentroAtencionID INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -222,7 +222,7 @@ BEGIN
 		ON I.UsuarioID = US.UsuarioID
 	INNER JOIN Persona P
 		ON US.PersonaID = P.PersonaID
-	WHERE US.UsuarioID = ISNULL(@IdUsuario, US.UsuarioID)
+	WHERE CA.CentroAtencionID = ISNULL(@CentroAtencionID, CA.CentroAtencionID)
 
 END
 GO
