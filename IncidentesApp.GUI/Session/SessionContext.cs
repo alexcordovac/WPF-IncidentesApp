@@ -1,14 +1,15 @@
 ﻿using IncidentesApp.Entidades.Solicitud;
+using IncidentesApp.GUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IncidentesApp.Servicios.Interfaces
+namespace IncidentesApp.GUI.Session
 {
-    public interface IUsuarioService
+    internal class SessionContext : ISessionContext
     {
-        Task<UsuarioDTO?> Autenticar(UsuarioDTO usuario);
+        public UsuarioDTO Usuario { get; set; }
     }
 }

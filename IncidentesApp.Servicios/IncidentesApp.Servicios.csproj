@@ -1,14 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\IncidentesApp.Entidades\IncidentesApp.Entidades.csproj" />
-    <ProjectReference Include="..\IncidentesApp.Repositorios\IncidentesApp.Repositorios.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Geolocation" Version="1.2.1" />
+		
+		<ProjectReference Include="..\IncidentesApp.Entidades\IncidentesApp.Entidades.csproj" />
+		<ProjectReference Include="..\IncidentesApp.Repositorios\IncidentesApp.Repositorios.csproj" />
+	</ItemGroup>
 
 </Project>
