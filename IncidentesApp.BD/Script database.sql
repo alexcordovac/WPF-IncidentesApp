@@ -180,3 +180,49 @@
 	ALTER TABLE Incidente
 	ADD CONSTRAINT FK_CentroAtencion_TipoAsistenciaID FOREIGN KEY (CentroAtencionID)
 		REFERENCES CentroAtencion(CentroAtencionID)
+
+
+
+GO
+
+
+DROP PROCEDURE IF EXISTS sp_ConsultarIncidentes
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Alex Córdova>
+-- Create date: <31/Enero/2023>
+-- Description:	<Consultar Incidentes por Id de Usuario>
+-- =============================================
+CREATE PROCEDURE sp_ConsultarIncidentes
+	@IdUsuario INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT
+		I.IncidenteID, I.Descripcion, I.Lugar, I.Latitud, I.DistanciaKM, I.Longitud, I.DireccionCardinal, I.TiempoEstimadoMinutos, I.HoraEstimadaLlegada,
+		TA.TipoAsistenciaID, TA.Nombre, TA.Descripcion,
+		CA.CentroAtencionID, CA.Nombre, CA.CoordenadasID,
+		US.UsuarioID, US.Usuario, US.Contraseña, US.RolID, US.PersonaID,
+		P.PersonaID, P.Nombre, P.ApellidoPaterno, P.ApellidoMaterno, P.Edad
+	FROM Incidente I
+	INNER JOIN TipoAsistencia TA
+		ON I.TipoAsistenciaID = TA.TipoAsistenciaID
+	INNER JOIN CentroAtencion CA
+		ON I.CentroAtencionID = CA.CentroAtencionID
+	INNER JOIN Usuario US
+		ON I.UsuarioID = US.UsuarioID
+	INNER JOIN Persona P
+		ON US.PersonaID = P.PersonaID
+	WHERE US.UsuarioID = ISNULL(@IdUsuario, US.UsuarioID)
+
+END
+GO

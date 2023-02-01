@@ -22,6 +22,7 @@ namespace IncidentesApp.GUI.ViewModels
         {
             this._containerProvider = containerProvider;
 
+            //Catálogo por defecto de Tipo de Asistencia
             CatalogoTipoAsistencia = new ObservableCollection<TipoAsistenciaModel>();
             CatalogoTipoAsistencia.Add(new TipoAsistenciaModel(1, "Policía", "PoliceBadgeOutline"));
             CatalogoTipoAsistencia.Add(new TipoAsistenciaModel(2, "Bomberos", "FireTruck"));
@@ -29,8 +30,6 @@ namespace IncidentesApp.GUI.ViewModels
 
             Incidente = new IncidenciaModel() { Latitud = 18.265751928562267, Longitud = -93.22412155715988 };
             this.EnviarCommand = new DelegateCommand(this.EnviarIncidente);
-
-            //EnviarCommand
         }
 
         #region Comandos

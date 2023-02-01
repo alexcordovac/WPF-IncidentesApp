@@ -19,6 +19,11 @@ namespace IncidentesApp.Repositorios.Repositorios
             this._context = connection;
         }
 
+        /// <summary>
+        /// Guardar un incidente en la base de datos
+        /// </summary>
+        /// <param name="incidente"></param>
+        /// <returns></returns>
         public async Task<int> Guardar(IncidenteDTO incidente)
         {
             var sql = @"INSERT INTO 
