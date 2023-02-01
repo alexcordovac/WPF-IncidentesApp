@@ -13,5 +13,6 @@ namespace IncidentesApp.Servicios.Interfaces
         Task<IncidenteDTO> DireccionCardinal(IncidenteDTO incidente);
         Task<IncidenteDTO> TiempoEstimado(IncidenteDTO incidente);
         Task<IncidenteDTO> HoraEstimada(IncidenteDTO incidente);
+        Task<int> GuardarIncidente(IncidenteDTO incidente);
     }
 }

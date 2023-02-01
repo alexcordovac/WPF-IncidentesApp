@@ -10,22 +10,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace IncidentesApp.GUI.ViewModels
 {
     internal class ProcesarIncidenteViewModel : BindableBase
     {
         private readonly IIncidenteService _incidenteService;
+        private readonly ISessionContext _variablesSession;
 
-        public ProcesarIncidenteViewModel(IIncidenteService incidenteService)
+        public ProcesarIncidenteViewModel(IIncidenteService incidenteService, ISessionContext variablesSession)
         {
-            this._incidenteService = incidenteService;
+            _incidenteService = incidenteService;
+            _variablesSession = variablesSession;
 
             this.Incidente = new IncidenciaModel();
             this.CancelarCommand = new DelegateCommand<IClosable>(this.CerrarWindow);
             this.GuardarCommand = new DelegateCommand<IClosable>(this.GuardarIncidente);
 
-            this.ProcesarIncidente();
         }
 
         #region Comandos
@@ -40,10 +42,11 @@ namespace IncidentesApp.GUI.ViewModels
         public IncidenciaModel Incidente
         {
             get { return incidente; }
-            set { incidente = value; }
+            set { SetProperty(ref this.incidente, value); }
         }
 
 
+        public bool EsIncidenteGuardado { get; set; } = false;
 
         private Visibility cargandoEstacionVisibility = Visibility.Visible;
 
@@ -96,37 +99,44 @@ namespace IncidentesApp.GUI.ViewModels
         /// <summary>
         /// Calcular los elementos restantes de la incidencia
         /// </summary>
-        private async void ProcesarIncidente()
+        public async Task ProcesarIncidente()
         {
+            try
+            {
+                await Task.Delay(2000);
 
-            await Task.Delay(2000);
+                //Cargar Centro de atención y distancia
+                var incidentResponse = await this._incidenteService.CentroAtencionCercano(new IncidenteDTO() { Latitud = this.Incidente.Latitud, Longitud = this.Incidente.Longitud });
 
-            //Cargar Centro de atención y distancia
-            var incidentResponse = await this._incidenteService.CentroAtencionCercano(new IncidenteDTO() { Latitud = this.Incidente.Latitud, Longitud = this.Incidente.Longitud });
+                this.Incidente.DistanciaKM = incidentResponse.DistanciaKM;
+                this.Incidente.CentroAtencion = new CentroAtencionModel() { Nombre = incidentResponse.CentroAtencion.Nombre, CentroAtencionID = incidentResponse.CentroAtencion.CentroAtencionID };
 
-            this.Incidente.DistanciaKM = incidentResponse.DistanciaKM;
-            this.Incidente.CentroAtencion = new CentroAtencionModel() { Nombre = incidentResponse.CentroAtencion.Nombre};
+                this.CargandoEstacionVisibility = Visibility.Collapsed;
+                this.CargandoDistanciaVisibility = Visibility.Collapsed;
 
-            this.CargandoEstacionVisibility = Visibility.Collapsed;
-            this.CargandoDistanciaVisibility = Visibility.Collapsed;
+                //Cargar dirección cardinal
+                await Task.Delay(1000);
+                await this._incidenteService.DireccionCardinal(incidentResponse);
+                this.Incidente.DireccionCardinal = incidentResponse.DireccionCardinal;
+                this.CargandoDireccionCardinalVisibility = Visibility.Collapsed;
 
-            //Cargar dirección cardinal
-            await Task.Delay(1000);
-            await this._incidenteService.DireccionCardinal(incidentResponse);
-            this.Incidente.DireccionCardinal = incidentResponse.DireccionCardinal;
-            this.CargandoDireccionCardinalVisibility = Visibility.Collapsed;
+                //Tiempo reccorido
+                await Task.Delay(1000);
+                await this._incidenteService.TiempoEstimado(incidentResponse);
+                this.Incidente.TiempoEstimadoMinutos = incidentResponse.TiempoEstimadoMinutos;
+                this.CargandoTEVisibility = Visibility.Collapsed;
 
-            //Tiempo reccorido
-            await Task.Delay(1000);
-            await this._incidenteService.TiempoEstimado(incidentResponse);
-            this.Incidente.TiempoEstimadoMinutos = incidentResponse.TiempoEstimadoMinutos;;
-            this.CargandoTEVisibility = Visibility.Collapsed;
+                //Hora estimada llegada
+                await Task.Delay(1000);
+                await this._incidenteService.HoraEstimada(incidentResponse);
+                this.Incidente.HoraEstimadaLlegada = incidentResponse.HoraEstimadaLlegada.Value;
+                this.CargandoHEVisibility = Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
-            //Hora estimada llegada
-            await Task.Delay(1000);
-            await this._incidenteService.HoraEstimada(incidentResponse);
-            this.Incidente.HoraEstimadaLlegada = incidentResponse.HoraEstimadaLlegada.Value;
-            this.CargandoHEVisibility= Visibility.Collapsed;
         }
 
         /// <summary>
@@ -142,9 +152,45 @@ namespace IncidentesApp.GUI.ViewModels
         /// Guardar incidente en la base de datos
         /// </summary>
         /// <param name="win"></param>
-        private void GuardarIncidente(IClosable win)
+        private async void GuardarIncidente(IClosable win)
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+            try
+            {
+                IncidenteDTO dto = new IncidenteDTO();
 
+                dto.Descripcion = this.Incidente.Descripcion;
+                dto.Lugar = this.Incidente.Lugar;
+                dto.Latitud = this.Incidente.Latitud;
+                dto.Longitud = this.Incidente.Longitud;
+                dto.DistanciaKM = this.Incidente.DistanciaKM;
+                dto.DireccionCardinal = this.Incidente.DireccionCardinal;
+                dto.TiempoEstimadoMinutos = this.Incidente.TiempoEstimadoMinutos;
+                dto.HoraEstimadaLlegada = this.Incidente.HoraEstimadaLlegada;
+                dto.UsuarioID = _variablesSession.Usuario.UsuarioId;
+                dto.TipoAsistencia.TipoAsistenciaID = this.Incidente.TipoAsistenciaSeleccionado.TipoAsistenciaID;
+                dto.CentroAtencion.CentroAtencionID = this.Incidente.CentroAtencion.CentroAtencionID;
+
+
+                var rows = await this._incidenteService.GuardarIncidente(dto);
+
+                if(rows > 0)
+                {
+                    MessageBox.Show("Guardado correctamente!", "Operación exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    this.EsIncidenteGuardado = true;
+
+                    this.CerrarWindow(win);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         #endregion

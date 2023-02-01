@@ -25,7 +25,7 @@
         <StackPanel Margin="0 5 0 0">
             <Label FontSize="13"  Foreground="White" Margin="0 0 0 5">Tipo de asistencia</Label>
             <ListView ItemsSource="{Binding Source={StaticResource vmCatalogoTipoAsistencia}}" SelectionMode="Single" Height="70"
-                      SelectedItem="{Binding TipoAsistenciaSeleccionado}">
+                      SelectedItem="{Binding Incidente.TipoAsistenciaSeleccionado}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Background="Orange" Width="90" Margin="5 0 5 0">
@@ -64,22 +64,28 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel MinWidth="100">
-                        <Label Foreground="White" Content="Longitud"/>
-                        <TextBox Text="{Binding Incidente.Longitud}"/>
-                    </StackPanel>
 
-                    <StackPanel Margin="30 0 0 0" MinWidth="100">
+                    <!--Latitud-->
+                    <StackPanel MinWidth="100">
                         <Label Foreground="White" Content="Latitud"/>
                         <TextBox Text="{Binding Incidente.Latitud}"/>
                     </StackPanel>
+
+                    <!--Longitud-->
+                    <StackPanel MinWidth="100" Margin="30 0 0 0">
+                        <Label Foreground="White" Content="Longitud"/>
+                        <TextBox Text="{Binding Incidente.Longitud}"/>
+                    </StackPanel>
+                    
                 </StackPanel>
                 
+                <!--Lugar-->
                 <StackPanel Grid.Row="1" HorizontalAlignment="Left">
                     <Label Foreground="White" Content="Lugar de los hechos"/>
                     <TextBox MinWidth="150" Text="{Binding Incidente.Lugar}"/>
                 </StackPanel>
-
+                
+                <!--Descripcion-->
                 <StackPanel Grid.Row="2" HorizontalAlignment="Left">
                     <Label Foreground="White" Content="Descripción"/>
                     <TextBox MinWidth="300" TextWrapping="Wrap" Text="{Binding Incidente.Descripcion}"/>

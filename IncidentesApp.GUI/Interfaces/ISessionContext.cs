@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IncidentesApp.Servicios.Interfaces
+namespace IncidentesApp.GUI.Interfaces
 {
-    public interface IUsuarioService
+    internal interface ISessionContext
     {
-        Task<UsuarioDTO?> Autenticar(UsuarioDTO usuario);
+        UsuarioDTO Usuario { get; set; }
     }
 }

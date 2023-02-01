@@ -19,6 +19,8 @@ namespace IncidentesApp.Entidades.Solicitud
             this.Usuario = usuario;
             this.Contraseña = contraseña;
         }
+
+        public int UsuarioId { get; set; }
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
 

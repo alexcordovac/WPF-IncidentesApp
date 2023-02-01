@@ -13,11 +13,13 @@ namespace IncidentesApp.Servicios.Servicios
     public class IncidenteService : IIncidenteService
     {
         private readonly ICentroAtencionRepository _centroAtencionRepository;
+        private readonly IIncidenteRepository _incidenteRepository;
         private readonly GeolocalizacionService _geolocalizacionService = new GeolocalizacionService();
 
-        public IncidenteService(ICentroAtencionRepository centroAtencionRepository)
+        public IncidenteService(ICentroAtencionRepository centroAtencionRepository, IIncidenteRepository incidenteRepository)
         {
             _centroAtencionRepository = centroAtencionRepository;
+            _incidenteRepository = incidenteRepository;
         }
 
         /// <summary>
@@ -59,13 +61,19 @@ namespace IncidentesApp.Servicios.Servicios
         /// Calcula el Tiempo Estimado de Recorrido
         /// </summary>
         /// <param name="incidente"></param>
-        /// <returns></returns>
+        /// <returns>Incidente con tiempo estimado en minutos</returns>
         public async Task<IncidenteDTO> TiempoEstimado(IncidenteDTO incidente)
         {
             incidente.TiempoEstimadoMinutos = (incidente.DistanciaKM / 120) * 60;
 
             return incidente;
         }
+
+        /// <summary>
+        /// Calcula la Hora Estimada de llegada desde el centro de atención al incidente.
+        /// </summary>
+        /// <param name="incidente"></param>
+        /// <returns>Incidente con HoraEstimada</returns>
         public async Task<IncidenteDTO> HoraEstimada(IncidenteDTO incidente)
         {
             incidente.HoraEstimadaLlegada = DateTime.Now.AddMinutes(incidente.TiempoEstimadoMinutos);
@@ -74,6 +82,17 @@ namespace IncidentesApp.Servicios.Servicios
         }
 
 
+        /// <summary>
+        /// Guardar la incidencia en base de datos
+        /// </summary>
+        /// <param name="incidente"></param>
+        /// <returns></returns>
+        public async Task<int> GuardarIncidente(IncidenteDTO incidente)
+        {
+            var rows = await this._incidenteRepository.Guardar(incidente);
+
+            return rows;
+        } 
 
     }
 }

@@ -162,7 +162,7 @@
 		DistanciaKM NUMERIC(8, 3),
 		Longitud NUMERIC(23, 20) NOT NULL,
 		DireccionCardinal VARCHAR(10),
-		TiempoEstimadoMinutos NUMERIC(6,3),
+		TiempoEstimadoMinutos NUMERIC(14,10),
 		HoraEstimadaLlegada DATETIME,
 		UsuarioID INT NOT NULL,
 		TipoAsistenciaID INT NOT NULL,

@@ -12,6 +12,7 @@ namespace IncidentesApp.Entidades.DTO
         public IncidenteDTO()
         {
             this.CentroAtencion = new CentroAtencionDTO();
+            this.TipoAsistencia = new TipoAsistenciaDTO();
         }
 
         public int IncidenteID { get; set; }
@@ -24,7 +25,7 @@ namespace IncidentesApp.Entidades.DTO
         public double TiempoEstimadoMinutos { get; set; }
         public DateTime? HoraEstimadaLlegada { get; set; }
         public int UsuarioID { get; set; }
-        public int TipoAsistenciaID { get; set; }
+        public TipoAsistenciaDTO TipoAsistencia { get; set; }
         public CentroAtencionDTO CentroAtencion { get; set; }
     }
 }

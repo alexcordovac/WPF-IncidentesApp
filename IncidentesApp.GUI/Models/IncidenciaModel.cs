@@ -17,6 +17,15 @@ namespace IncidentesApp.GUI.Models
         }
 
 
+        private TipoAsistenciaModel tipoAsistenciaSeleccionado;
+
+        public TipoAsistenciaModel TipoAsistenciaSeleccionado
+        {
+            get { return tipoAsistenciaSeleccionado; }
+            set { SetProperty(ref this.tipoAsistenciaSeleccionado, value); }
+        }
+
+
         private CentroAtencionModel centroAtencion;
 
         public CentroAtencionModel CentroAtencion

@@ -27,8 +27,8 @@ namespace IncidentesApp.GUI.ViewModels
             CatalogoTipoAsistencia.Add(new TipoAsistenciaModel(2, "Bomberos", "FireTruck"));
             CatalogoTipoAsistencia.Add(new TipoAsistenciaModel(3, "Ambulancia", "Ambulance"));
 
-            Incidente = new IncidenciaModel();
-            this.EnviarCommand = new DelegateCommand(this.GuardarIncidente);
+            Incidente = new IncidenciaModel() { Latitud = 18.265751928562267, Longitud = -93.22412155715988 };
+            this.EnviarCommand = new DelegateCommand(this.EnviarIncidente);
 
             //EnviarCommand
         }
@@ -41,22 +41,49 @@ namespace IncidentesApp.GUI.ViewModels
 
         public ObservableCollection<TipoAsistenciaModel> CatalogoTipoAsistencia { get; set; }
 
-        public TipoAsistenciaModel TipoAsistenciaSeleccionado { get; set; }
 
-        public IncidenciaModel Incidente { get; set; }
+        private IncidenciaModel incidente;
+
+        public IncidenciaModel Incidente
+        {
+            get { return incidente; }
+            set { SetProperty(ref incidente, value);}
+        }
 
         #endregion
 
         #region Metodos
-        private void GuardarIncidente()
+
+        /// <summary>
+        /// Procesa los datos de la incidencia, para calcular los datos faltantes
+        /// </summary>
+        private void EnviarIncidente()
         {
-            var rs = MessageBox.Show("¿Enviar incidencia?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
 
-
-            if (rs == MessageBoxResult.Yes)
+            if(this.Incidente.TipoAsistenciaSeleccionado == null) 
             {
+                MessageBox.Show("Selecciona un tipo de asistencia", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+
+            if (MessageBox.Show("¿Enviar incidencia?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+
+                //Mostrar la ventana de procesar incidente (calcular datos)
                 var procesarView = this._containerProvider.Resolve<ProcesarIncidenteView>();
+                var dtc = procesarView.DataContext as ProcesarIncidenteViewModel;
+
+                dtc.Incidente = this.Incidente;
+                dtc.ProcesarIncidente();
+
                 procesarView.ShowDialog();
+
+                if (dtc.EsIncidenteGuardado)
+                {
+                    this.Incidente = new IncidenciaModel();
+                }
             }
 
         }
