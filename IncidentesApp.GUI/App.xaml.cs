@@ -56,19 +56,18 @@ namespace IncidentesApp.GUI
 
         protected override void OnInitialized()
         {
-            var sc = Container.Resolve<ISessionContext>();
-
             //Hacer login antes de mostrar la ventana inicial
             var login = Container.Resolve<LoginView>();
-
             login.ShowDialog();
 
-            if (login.DataContext is LoginViewModel logindtc && logindtc.UsuarioLogueado == null)
+            //Validar si el usuario se pudo loguear
+            var loginDc = (LoginViewModel)login.DataContext;
+            if (loginDc.UsuarioLogueado == null)
                 System.Windows.Application.Current.Shutdown();
 
             //Guardar usuario en las variables de sesión
-            var dc = (login.DataContext as LoginViewModel);
-            sc.Usuario = dc.UsuarioLogueado;
+            var sc = Container.Resolve<ISessionContext>();
+            sc.Usuario = loginDc.UsuarioLogueado;
 
             base.OnInitialized();
         }

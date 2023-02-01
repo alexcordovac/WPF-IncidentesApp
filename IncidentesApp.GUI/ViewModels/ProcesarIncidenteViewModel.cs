@@ -1,4 +1,5 @@
 ﻿using IncidentesApp.Entidades.DTO;
+using IncidentesApp.Entidades.Solicitud;
 using IncidentesApp.GUI.Interfaces;
 using IncidentesApp.GUI.Models;
 using IncidentesApp.Servicios.Interfaces;
@@ -27,7 +28,6 @@ namespace IncidentesApp.GUI.ViewModels
             this.Incidente = new IncidenciaModel();
             this.CancelarCommand = new DelegateCommand<IClosable>(this.CerrarWindow);
             this.GuardarCommand = new DelegateCommand<IClosable>(this.GuardarIncidente);
-
         }
 
         #region Comandos
@@ -167,14 +167,14 @@ namespace IncidentesApp.GUI.ViewModels
                 dto.DireccionCardinal = this.Incidente.DireccionCardinal;
                 dto.TiempoEstimadoMinutos = this.Incidente.TiempoEstimadoMinutos;
                 dto.HoraEstimadaLlegada = this.Incidente.HoraEstimadaLlegada;
-                dto.UsuarioID = _variablesSession.Usuario.UsuarioId;
+                dto.Usuario = new UsuarioDTO() { UsuarioId = _variablesSession.Usuario.UsuarioId };
                 dto.TipoAsistencia.TipoAsistenciaID = this.Incidente.TipoAsistenciaSeleccionado.TipoAsistenciaID;
                 dto.CentroAtencion.CentroAtencionID = this.Incidente.CentroAtencion.CentroAtencionID;
 
 
                 var rows = await this._incidenteService.GuardarIncidente(dto);
 
-                if(rows > 0)
+                if (rows > 0)
                 {
                     MessageBox.Show("Guardado correctamente!", "Operación exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
 

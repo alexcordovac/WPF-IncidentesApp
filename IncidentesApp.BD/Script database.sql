@@ -211,7 +211,7 @@ BEGIN
 		I.IncidenteID, I.Descripcion, I.Lugar, I.Latitud, I.DistanciaKM, I.Longitud, I.DireccionCardinal, I.TiempoEstimadoMinutos, I.HoraEstimadaLlegada,
 		TA.TipoAsistenciaID, TA.Nombre, TA.Descripcion,
 		CA.CentroAtencionID, CA.Nombre, CA.CoordenadasID,
-		US.UsuarioID, US.Usuario, US.Contraseña, US.RolID, US.PersonaID,
+		US.UsuarioID, US.Usuario,
 		P.PersonaID, P.Nombre, P.ApellidoPaterno, P.ApellidoMaterno, P.Edad
 	FROM Incidente I
 	INNER JOIN TipoAsistencia TA
