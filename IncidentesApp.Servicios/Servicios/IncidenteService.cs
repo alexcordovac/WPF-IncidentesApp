@@ -14,12 +14,13 @@ namespace IncidentesApp.Servicios.Servicios
     {
         private readonly ICentroAtencionRepository _centroAtencionRepository;
         private readonly IIncidenteRepository _incidenteRepository;
-        private readonly GeolocalizacionService _geolocalizacionService = new GeolocalizacionService();
+        private readonly IGeolocalizacionService _geolocalizacionService;
 
-        public IncidenteService(ICentroAtencionRepository centroAtencionRepository, IIncidenteRepository incidenteRepository)
+        public IncidenteService(ICentroAtencionRepository centroAtencionRepository, IIncidenteRepository incidenteRepository, IGeolocalizacionService geolocalizacionService)
         {
             _centroAtencionRepository = centroAtencionRepository;
             _incidenteRepository = incidenteRepository;
+            _geolocalizacionService = geolocalizacionService;
         }
 
         /// <summary>

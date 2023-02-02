@@ -22,6 +22,10 @@ namespace IncidentesApp.GUI.ViewModels
             NavigateCommand = new DelegateCommand<string>(this.Navigate);
         }
 
+        /// <summary>
+        /// Cambiar las vistas
+        /// </summary>
+        /// <param name="navigatePath"></param>
         private void Navigate(string navigatePath)
         {
             if (navigatePath != null)
