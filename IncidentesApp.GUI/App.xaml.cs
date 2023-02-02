@@ -35,12 +35,14 @@ namespace IncidentesApp.GUI
             containerRegistry.RegisterForNavigation<ConsultarIncidentesView>();
             containerRegistry.RegisterForNavigation<ReportarIncidenteView>();
 
+            //obtener cadena de conexión a la base de datos
             var cnn = ConfigurationManager.ConnectionStrings["SQLServerConn"].ConnectionString;
 
+            //Registrar dependencias
             containerRegistry.Register<IDbConnection>((r) => new SqlConnection(cnn));
-
             containerRegistry.RegisterSingleton<ISessionContext, SessionContext>();
             containerRegistry.Register<IUsuarioService, UsuarioService>();
+            containerRegistry.Register<IGeolocalizacionService, GeolocalizacionService>();
             containerRegistry.Register<IUsuarioRepository, UsuarioRepository>();
             containerRegistry.Register<IIncidenteRepository, IncidenteRepository>();
             containerRegistry.Register<IIncidenteService, IncidenteService>();
@@ -60,7 +62,7 @@ namespace IncidentesApp.GUI
             var login = Container.Resolve<LoginView>();
             login.ShowDialog();
 
-            //Validar si el usuario se pudo loguear
+            //Validar si el usuario se pudo loguear, si no, cerrar la app
             var loginDc = (LoginViewModel)login.DataContext;
             if (loginDc.UsuarioLogueado == null)
                 System.Windows.Application.Current.Shutdown();

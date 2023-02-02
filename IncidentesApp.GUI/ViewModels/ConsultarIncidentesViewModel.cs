@@ -19,8 +19,9 @@ namespace IncidentesApp.GUI.ViewModels
         public ConsultarIncidentesViewModel(IIncidenteService _incidenteService)
         {
             this.incidenteService = _incidenteService;
-
             this.FiltrarCommand = new DelegateCommand(() => this.CargarListaIncidentes());
+
+            //Cargar todas las incidencias, no esperar task, la vista se enterará cuando termine
             this.CargarListaIncidentes();
         }
 
@@ -53,6 +54,11 @@ namespace IncidentesApp.GUI.ViewModels
         #region Metodos
 
 
+        /// <summary>
+        /// Carga la lista de incidentes desde el servicio y 
+        /// tomando el id de centro de monitorero ingresado por el usuario
+        /// </summary>
+        /// <returns></returns>
         private async Task CargarListaIncidentes()
         {
             try
