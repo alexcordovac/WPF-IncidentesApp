@@ -37,7 +37,7 @@ namespace IncidentesApp.Repositorios.Repositorios
         }
 
 
-        public async Task<IEnumerable<IncidenteDTO>> FiltrarPorIDCentroMonitoreo(int centroAtencionID)
+        public async Task<IEnumerable<IncidenteDTO>> FiltrarPorIDCentroAtencion(int? centroAtencionID)
         {
             var lista = await this._context.QueryAsync<IncidenteDTO, TipoAsistenciaDTO, CentroAtencionDTO, UsuarioDTO, PersonaDTO, IncidenteDTO>(sql: "dbo.sp_ConsultarIncidentes",  (inc, tipoAs, centroA, usu, perso) => {
                 inc.TipoAsistencia = tipoAs;

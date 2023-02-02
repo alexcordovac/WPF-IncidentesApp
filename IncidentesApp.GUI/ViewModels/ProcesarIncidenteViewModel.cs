@@ -168,7 +168,7 @@ namespace IncidentesApp.GUI.ViewModels
                 dto.TiempoEstimadoMinutos = this.Incidente.TiempoEstimadoMinutos;
                 dto.HoraEstimadaLlegada = this.Incidente.HoraEstimadaLlegada;
                 dto.Usuario = new UsuarioDTO() { UsuarioId = _variablesSession.Usuario.UsuarioId };
-                dto.TipoAsistencia.TipoAsistenciaID = this.Incidente.TipoAsistenciaSeleccionado.TipoAsistenciaID;
+                dto.TipoAsistencia.TipoAsistenciaID = this.Incidente.TipoAsistencia.TipoAsistenciaID;
                 dto.CentroAtencion.CentroAtencionID = this.Incidente.CentroAtencion.CentroAtencionID;
 
 

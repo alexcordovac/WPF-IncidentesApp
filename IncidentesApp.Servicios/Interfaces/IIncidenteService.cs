@@ -14,5 +14,6 @@ namespace IncidentesApp.Servicios.Interfaces
         Task<IncidenteDTO> TiempoEstimado(IncidenteDTO incidente);
         Task<IncidenteDTO> HoraEstimada(IncidenteDTO incidente);
         Task<int> GuardarIncidente(IncidenteDTO incidente);
+        Task<IEnumerable<IncidenteDTO>> FiltrarIncidentesPorCentroAtencionID(int? centroAtencionID);
     }
 }

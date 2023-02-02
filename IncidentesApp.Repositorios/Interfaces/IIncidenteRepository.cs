@@ -11,6 +11,6 @@ namespace IncidentesApp.Repositorios.Interfaces
     {
         Task<int> Guardar(IncidenteDTO incidente);
 
-        Task<IEnumerable<IncidenteDTO>> FiltrarPorIDCentroMonitoreo(int centroAtencionID);
+        Task<IEnumerable<IncidenteDTO>> FiltrarPorIDCentroAtencion(int? centroAtencionID);
     }
 }

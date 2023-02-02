@@ -16,13 +16,29 @@ namespace IncidentesApp.GUI.Models
             this.CentroAtencion = new CentroAtencionModel();
         }
 
+        private int incidenteID;
 
-        private TipoAsistenciaModel tipoAsistenciaSeleccionado;
-
-        public TipoAsistenciaModel TipoAsistenciaSeleccionado
+        public int IncidenteID
         {
-            get { return tipoAsistenciaSeleccionado; }
-            set { SetProperty(ref this.tipoAsistenciaSeleccionado, value); }
+            get { return incidenteID; }
+            set { SetProperty(ref this.incidenteID, value); }
+        }
+
+        private UsuarioModel usuario;
+
+        public UsuarioModel Usuario
+        {
+            get { return usuario; }
+            set { SetProperty(ref this.usuario, value); }
+        }
+
+
+        private TipoAsistenciaModel tipoAsistencia;
+
+        public TipoAsistenciaModel TipoAsistencia
+        {
+            get { return tipoAsistencia; }
+            set { SetProperty(ref this.tipoAsistencia, value); }
         }
 
 

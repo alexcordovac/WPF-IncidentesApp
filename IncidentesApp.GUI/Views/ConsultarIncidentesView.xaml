@@ -3,11 +3,142 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IncidentesApp.GUI.Views"
+             xmlns:local="clr-namespace:IncidentesApp.GUI.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
+             d:DesignHeight="450" d:DesignWidth="1000" d:Background="White">
     <Grid>
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center">ConsultarIncidentesView</Label>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Panel de búsqueda-->
+        <DockPanel>
             
+            <!--Botón buscar-->
+            <Button HorizontalAlignment="Right" 
+                    Content="Buscar" 
+                    DockPanel.Dock="Right"
+                    Margin="10 0 10 0"
+                    Command="{Binding FiltrarCommand}"/>
+            
+            <!--Barra búsqueda-->
+            <Border  
+                 Background="LightGray"
+                 CornerRadius="15"
+                 Height="30"
+                 Margin="10 0 10 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox
+                        Grid.Column="1"
+                        x:Name="TxtBusqueda"
+                        Background="LightGray"
+                        Margin="5 1 15 1"
+                        VerticalContentAlignment="Center"
+                        BorderThickness="0"
+                        Opacity="0.7"
+                        Text="{Binding CentroAtencionID, TargetNullValue='',  UpdateSourceTrigger=PropertyChanged}"/>
+
+                   
+                    <TextBlock
+                            Grid.Column="1"
+                            IsHitTestVisible="False"
+                            Background="Transparent"
+                            Margin="5 0 15 0"
+                            Opacity="0.4"
+                            VerticalAlignment="Center"
+                            Text="Buscar por ID del Centro de Monitoreo">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=TxtBusqueda}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </TextBlock.Style>
+                    </TextBlock>
+                    
+
+                    <materialDesign:PackIcon Kind="Search"
+                                             Grid.Column="0"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Height="25"
+                                             Width="25"
+                                             Opacity="0.5"/>
+
+
+                </Grid>
+            </Border>
+
+        </DockPanel>
+
+        
+        <!--Tabla de datos-->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding ListaIncidentes}" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  HorizontalScrollBarVisibility="Visible">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="IncidenteID" 
+                                    Binding="{Binding IncidenteID}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Lugar" 
+                                    Binding="{Binding Lugar}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Descripcion" 
+                                    Binding="{Binding Descripcion}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Distancia" 
+                                    Binding="{Binding DistanciaKM}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Tipo de asistencia" 
+                                    Binding="{Binding TipoAsistencia.Nombre}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="CentroAtencionID" 
+                                    Binding="{Binding CentroAtencion.CentroAtencionID}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Centro de atención" 
+                                    Binding="{Binding CentroAtencion.Nombre}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Usuario" 
+                                    Binding="{Binding Usuario.Usuario}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Persona" 
+                                    IsReadOnly="True">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="Usuario.Persona.Nombre"/>
+                            <Binding Path="Usuario.Persona.ApellidoPaterno"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>                    
+                </DataGridTextColumn>
+
+
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
     </Grid>
 </UserControl>

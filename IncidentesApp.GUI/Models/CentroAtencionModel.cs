@@ -10,7 +10,14 @@ namespace IncidentesApp.GUI.Models
     internal class CentroAtencionModel : BindableBase
     {
 
-        public int CentroAtencionID { get; set; }
+
+        private int centroAtencionID;
+
+        public int CentroAtencionID
+        {
+            get { return centroAtencionID; }
+            set { SetProperty(ref this.centroAtencionID, value); }
+        }
 
 
         private string nombre;
