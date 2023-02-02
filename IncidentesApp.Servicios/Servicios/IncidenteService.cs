@@ -92,7 +92,18 @@ namespace IncidentesApp.Servicios.Servicios
             var rows = await this._incidenteRepository.Guardar(incidente);
 
             return rows;
-        } 
+        }
+
+
+        /// <summary>
+        /// Obtiene todos los incidentes relacionados a un centro de monitoreo
+        /// </summary>
+        /// <param name="centroAtencionID"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<IncidenteDTO>> FiltrarIncidentesPorCentroAtencionID(int? centroAtencionID)
+        {
+            return await this._incidenteRepository.FiltrarPorIDCentroAtencion(centroAtencionID);
+        }
 
     }
 }

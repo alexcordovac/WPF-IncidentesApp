@@ -60,7 +60,7 @@ namespace IncidentesApp.GUI.ViewModels
         {
             
 
-            if(this.Incidente.TipoAsistenciaSeleccionado == null) 
+            if(this.Incidente.TipoAsistencia == null) 
             {
                 MessageBox.Show("Selecciona un tipo de asistencia", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
