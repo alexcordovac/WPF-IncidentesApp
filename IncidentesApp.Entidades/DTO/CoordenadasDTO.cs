@@ -9,12 +9,12 @@ namespace IncidentesApp.Entidades.DTO
     public class CoordenadasDTO
     {
         public int CoordenadasID { get; set; }
-        public byte LatitudGrados { get; set; }
-        public byte LatitudMinutos { get; set; }
-        public byte LatitudSegundos { get; set; }
+        public short LatitudGrados { get; set; }
+        public short LatitudMinutos { get; set; }
+        public short LatitudSegundos { get; set; }
         public short LongitudGrados { get; set; }
-        public byte LongitudMinutos { get; set; }
-        public byte LongitudSegundos { get; set; }
+        public short LongitudMinutos { get; set; }
+        public short LongitudSegundos { get; set; }
         public short Altitud { get; set; }
     }
 }

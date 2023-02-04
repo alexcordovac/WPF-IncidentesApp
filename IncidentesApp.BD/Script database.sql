@@ -67,12 +67,12 @@
 	--Coordenadas
 	CREATE TABLE Coordenadas(
 		CoordenadasID INT IDENTITY PRIMARY KEY,
-		LatitudGrados TINYINT NOT NULL,
-		LatitudMinutos TINYINT NOT NULL,
-		LatitudSegundos TINYINT NOT NULL,
-		LongitudGrados TINYINT NOT NULL,
-		LongitudMinutos TINYINT NOT NULL,
-		LongitudSegundos TINYINT NOT NULL,
+		LatitudGrados SMALLINT NOT NULL,
+		LatitudMinutos SMALLINT NOT NULL,
+		LatitudSegundos SMALLINT NOT NULL,
+		LongitudGrados SMALLINT NOT NULL,
+		LongitudMinutos SMALLINT NOT NULL,
+		LongitudSegundos SMALLINT NOT NULL,
 		Altitud SMALLINT NOT NULL
 	)
 
@@ -80,23 +80,23 @@
 
 	INSERT INTO Coordenadas(CoordenadasID, LatitudGrados, LatitudMinutos, LatitudSegundos, LongitudGrados, LongitudMinutos, LongitudSegundos, Altitud)
 	VALUES 
-		(1, 19, 12, 20, 99, 15, 24, 3930),
-		(2, 19, 06, 32, 99, 01, 49, 3690),
-		(3, 19, 09, 00, 99, 13, 00, 3620),
-		(4, 19, 06, 07, 99, 59, 22, 3550),
-		(5, 19, 17, 22, 99, 18, 00, 3530),
-		(6, 19, 09, 16, 99, 06, 20, 3510),
-		(7, 19, 05, 24, 99, 08, 06, 3490),
-		(8, 19, 06, 59, 99, 09, 44, 3320),
-		(9, 19, 02, 54, 99, 03, 36, 3150),
-		(10, 19, 05, 47, 99, 13, 31, 3100),
-		(11, 19, 10, 08, 99, 27, 12, 2900),
-		(12, 19, 19, 22, 99, 59, 56, 2820),
-		(13, 19, 31, 53, 99, 07, 48, 2730),
-		(14, 19, 13, 29, 99, 01, 51, 2710),
-		(15, 19, 19, 00, 99, 01, 50, 2560),
-		(16, 19, 20, 33, 99, 05, 19, 2450),
-		(17, 19, 25, 22, 99, 10, 28, 2280)
+		(1, 19, 12, 20, -99, 15, 24, 3930),
+		(2, 19, 06, 32, -99, 01, 49, 3690),
+		(3, 19, 09, 00, -99, 13, 00, 3620),
+		(4, 19, 06, 07, -99, 59, 22, 3550),
+		(5, 19, 17, 22, -99, 18, 00, 3530),
+		(6, 19, 09, 16, -99, 06, 20, 3510),
+		(7, 19, 05, 24, -99, 08, 06, 3490),
+		(8, 19, 06, 59, -99, 09, 44, 3320),
+		(9, 19, 02, 54, -99, 03, 36, 3150),
+		(10, 19, 05, 47, -99, 13, 31, 3100),
+		(11, 19, 10, 08, -99, 27, 12, 2900),
+		(12, 19, 19, 22, -99, 59, 56, 2820),
+		(13, 19, 31, 53, -99, 07, 48, 2730),
+		(14, 19, 13, 29, -99, 01, 51, 2710),
+		(15, 19, 19, 00, -99, 01, 50, 2560),
+		(16, 19, 20, 33, -99, 05, 19, 2450),
+		(17, 19, 25, 22, -99, 10, 28, 2280)
 
 	SET IDENTITY_INSERT Coordenadas OFF
 
