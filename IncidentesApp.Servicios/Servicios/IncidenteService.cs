@@ -33,7 +33,15 @@ namespace IncidentesApp.Servicios.Servicios
             var listaCentrosAtn = await this._centroAtencionRepository.ListaCentrosAtencion();
 
             //Mapear la distancia como el key de un diccionario y el valor del Centro de Atención
-            var diaccionarioCentrosAtn = listaCentrosAtn.ToDictionary(t => this._geolocalizacionService.Distancia(_geolocalizacionService.ConvertirACoordenadasDecimales(t.Coordenadas.LatitudGrados, t.Coordenadas.LatitudMinutos, t.Coordenadas.LatitudSegundos), _geolocalizacionService.ConvertirACoordenadasDecimales(t.Coordenadas.LongitudGrados, t.Coordenadas.LongitudMinutos, t.Coordenadas.LongitudSegundos), incidente.Latitud, incidente.Longitud), v => v);
+            var diaccionarioCentrosAtn = listaCentrosAtn.ToDictionary(
+                t => _geolocalizacionService.Distancia
+                    (
+                        _geolocalizacionService.ConvertirACoordenadasDecimales(t.Coordenadas.LatitudGrados, t.Coordenadas.LatitudMinutos, t.Coordenadas.LatitudSegundos),
+                        _geolocalizacionService.ConvertirACoordenadasDecimales(t.Coordenadas.LongitudGrados, t.Coordenadas.LongitudMinutos, t.Coordenadas.LongitudSegundos), 
+                        incidente.Latitud, 
+                        incidente.Longitud
+                    ), 
+                v => v);
 
             //Buscar el registro en diccionario que tenga el key (distancia) menor
             var el = diaccionarioCentrosAtn.MinBy(t => t.Key);
