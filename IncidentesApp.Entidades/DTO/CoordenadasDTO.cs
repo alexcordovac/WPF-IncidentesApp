@@ -12,7 +12,7 @@ namespace IncidentesApp.Entidades.DTO
         public byte LatitudGrados { get; set; }
         public byte LatitudMinutos { get; set; }
         public byte LatitudSegundos { get; set; }
-        public byte LongitudGrados { get; set; }
+        public short LongitudGrados { get; set; }
         public byte LongitudMinutos { get; set; }
         public byte LongitudSegundos { get; set; }
         public short Altitud { get; set; }

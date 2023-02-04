@@ -24,7 +24,11 @@ namespace IncidentesApp.Servicios.Servicios
         /// <returns></returns>
         public double ConvertirACoordenadasDecimales(double degrees, double minutes, double seconds)
         {
-            return degrees + (minutes / 60) + (seconds / 3600);
+            minutes = (minutes / 60);
+            seconds = (seconds / 3600);
+
+
+            return degrees > 0 ? (degrees + minutes + seconds) : (degrees - minutes - seconds);
         }
 
 
@@ -38,7 +42,7 @@ namespace IncidentesApp.Servicios.Servicios
         /// <returns></returns>
         public double Distancia(double latitudOrigen, double longitudOrigen, double latitudDestino, double longitudDestino)
         {
-            return GeoCalculator.GetDistance(latitudOrigen, longitudOrigen, latitudDestino, longitudDestino, 2, DistanceUnit.Kilometers);
+            return GeoCalculator.GetDistance(latitudOrigen, longitudOrigen, latitudDestino, longitudDestino, 6, DistanceUnit.Kilometers);
         }
 
         /// <summary>
